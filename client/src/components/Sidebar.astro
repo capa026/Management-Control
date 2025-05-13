@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { currentPage } = Astro.props;
+---
+
+<aside
+  class="w-max bg-gray-900 border-r border-gray-800 pt-3 pb-1 hidden md:flex flex-col shadow-lg"
+>
+  <h2
+    class="flex items-center gap-1 text-xl font-bold mb-6 pb-3 px-3 text-teal-400 text-center border-gray-800 w-max border-b"
+  >
+    <Icon class={"text-2xl"} name="data-area-20" />
+    <i> Business Admin </i>
+  </h2>
+
+  <nav
+    class="space-y-2
+  [&_a]:flex [&_a]:px-3 [&_a]:py-2 [&_a]:text-sm [&_a]:rounded-lg [&_a]:hover:text-teal-400 [&_a]:hover:bg-gray-800 [&_a]:transition-colors [&_a]:duration-200 mx-3
+    [&_a]:items-center [&_a]:gap-2"
+  >
+    <a
+      href="/"
+      class={`${currentPage == "Dashboard" && "bg-teal-600 text-white"}`}
+    >
+      <Icon name="home" class={"text-2xl"} />
+      Dashboard</a
+    >
+    <a
+      href="/EstructuraDeCostos"
+      class={`${currentPage == "Estructura de Costos" && "bg-teal-600 text-white"}`}
+      ><Icon name="clipboard" class={"text-2xl"} />
+      Estructura de costos</a
+    >
+    <a
+      href="/Ventas"
+      class={`${currentPage == "Ventas" && "bg-teal-600 text-white"}`}
+      ><Icon class={"text-2xl"} name="checkall" />Ventas</a
+    >
+    <a
+      href="/Facturas"
+      class={`${currentPage == "Facturas" && "bg-teal-600 text-white"}`}
+      ><Icon class={"text-2xl"} name="document" />
+      Facturas</a
+    >
+    <a
+      href="/Inventario"
+      class={`${currentPage == "Inventario" && "bg-teal-600 text-white"}`}
+      ><Icon class={"text-2xl"} name="check-list" />
+      Inventario</a
+    >
+  </nav>
+  <h3 class="mt-auto text-gray-600 text-xs text-center">
+    ®Carlos pacheco 2025
+  </h3>
+</aside>

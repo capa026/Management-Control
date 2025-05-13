@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-gray-950 text-gray-200;
+}
+
+* {
+  @apply [&::-webkit-scrollbar]:w-1
+  [&::-webkit-scrollbar-track]:bg-neutral-800
+  [&::-webkit-scrollbar-thumb]:bg-neutral-500
+  [&::-webkit-scrollbar-thumb]:rounded-full;
+}
