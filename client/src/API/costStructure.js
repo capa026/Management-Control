@@ -17,7 +17,7 @@ export const getAll = async () => {
 
 export const deleteById = async (id) => {
   try {
-    await deleteData(BACKEND_URL + "/deleteById", id);
+    const response = await deleteData(BACKEND_URL + "/deleteById", id);
 
     return response;
   } catch (error) {
