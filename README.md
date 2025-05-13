@@ -8,10 +8,9 @@
 PUBLIC_SERVER_URL = backend url
 ```
 
-## Backend
+### Backend
 
 ```
 CLIENT_ROUTE = frontent domain
 DATABASE_URL = connection string for postgres
-
 ```
