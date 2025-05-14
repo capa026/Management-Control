@@ -5,48 +5,50 @@ const { currentPage } = Astro.props;
 ---
 
 <aside
-  class="w-max bg-gray-900 border-r border-gray-800 pt-3 pb-1 hidden md:flex flex-col shadow-lg"
+  class="w-max bg-gray-900 border-r border-gray-800 pb-1 hidden md:flex flex-col shadow-lg"
 >
   <h2
-    class="flex items-center gap-1 text-xl font-bold mb-6 pb-3 px-3 text-teal-400 text-center border-gray-800 w-max border-b"
+    class="flex items-center gap-1 text-lg font-bold mb-1 px-3 text-teal-400 text-center border-gray-800 w-full border-b h-12 max-h-12"
   >
-    <Icon class={"text-2xl"} name="data-area-20" />
-    <i> Business Admin </i>
+    <Icon name="data-area-20" />
+    <i> Management </i>
   </h2>
 
   <nav
-    class="space-y-2
-  [&_a]:flex [&_a]:px-3 [&_a]:py-2 [&_a]:text-sm [&_a]:rounded-lg [&_a]:hover:text-teal-400 [&_a]:hover:bg-gray-800 [&_a]:transition-colors [&_a]:duration-200 mx-3
-    [&_a]:items-center [&_a]:gap-2"
+    class="space-y-1
+    [&_a]:flex [&_a]:px-3 [&_a]:py-2 [&_a]:text-sm [&_a]:hover:text-teal-400 [&_a]:hover:bg-gray-800 [&_a]:transition-colors [&_a]:duration-200
+    [&_a]:items-center [&_a]:gap-2 [&_a]:font-normal"
   >
     <a
       href="/"
-      class={`${currentPage == "Dashboard" && "bg-teal-600 text-white"}`}
+      class={`${currentPage == "Dashboard" && "bg-gray-950 text-teal-400 hover:!bg-gray-950"}`}
     >
-      <Icon name="home" class={"text-2xl"} />
+      <Icon name="home" />
       Dashboard</a
     >
     <a
       href="/EstructuraDeCostos"
-      class={`${currentPage == "Estructura de Costos" && "bg-teal-600 text-white"}`}
-      ><Icon name="clipboard" class={"text-2xl"} />
+      class={`${currentPage == "Estructura de costos" && "bg-gray-950 text-teal-400 hover:!bg-gray-950"}`}
+      ><Icon name="clipboard" />
       Estructura de costos</a
     >
     <a
       href="/Ventas"
-      class={`${currentPage == "Ventas" && "bg-teal-600 text-white"}`}
-      ><Icon class={"text-2xl"} name="checkall" />Ventas</a
+      class={`${currentPage == "Ventas" && "bg-gray-950 text-teal-400 hover:!bg-gray-950"}`}
     >
+      <Icon name="line-md--briefcase" />
+      Ventas
+    </a>
     <a
       href="/Facturas"
-      class={`${currentPage == "Facturas" && "bg-teal-600 text-white"}`}
-      ><Icon class={"text-2xl"} name="document" />
+      class={`${currentPage == "Facturas" && "bg-gray-950 text-teal-400 hover:!bg-gray-950"}`}
+      ><Icon name="document" />
       Facturas</a
     >
     <a
       href="/Inventario"
-      class={`${currentPage == "Inventario" && "bg-teal-600 text-white"}`}
-      ><Icon class={"text-2xl"} name="check-list" />
+      class={`${currentPage == "Inventario" && "bg-gray-950 text-teal-400 hover:!bg-gray-950"}`}
+      ><Icon name="check-list" />
       Inventario</a
     >
   </nav>

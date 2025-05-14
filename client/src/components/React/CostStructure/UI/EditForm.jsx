@@ -53,7 +53,7 @@ const EditForm = ({ data, setShowModal }) => {
       name: product_name,
       description: product_description,
       // Helper function to group each ingredient field by name and turn it into an orderder object array
-      items: groupIngredients(ingredients),
+      items: currentItems,
       id,
     });
 

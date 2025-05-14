@@ -1,18 +1,10 @@
 ---
+import PageHeader from "../components/PageHeader.astro";
 import Layout from "../layouts/Layout.astro";
-import { Icon } from 'astro-icon/components';
 export const prerender = true;
 ---
 
 <Layout title="Facturas">
-  <div class="flex justify-between items-center p-3 bg-gray-900 border-b shadow-sm text-xl font-semibold border-gray-800 sticky top-0 left-0">
-
-    <h1 class="text-[18px] font-light flex items-center gap-2">
-      <Icon name="document"/>
-      Facturas</h1>
-   
-  </div>
-  <div class="p-6">
-    a
-  </div>
+  <PageHeader title="Facturas" iconName="document" />
+  <div class="p-6">a</div>
 </Layout>

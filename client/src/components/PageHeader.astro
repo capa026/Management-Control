@@ -1,0 +1,20 @@
+---
+import { Icon } from "astro-icon/components";
+import MenuButton from "./React/UI/MenuButton";
+
+const { title, iconName } = Astro.props;
+---
+
+<header
+  class="pr-14 md:pr-0 flex justify-between items-center bg-gray-900 border-b shadow-sm text-xl font-semibold border-gray-800 sticky top-0 left-0 h-12 max-h-12"
+>
+  <h1 class="text-[18px] font-light flex items-center gap-2 ml-3">
+    <Icon name={iconName} />
+    {title}
+  </h1>
+  <div class="md:mr-3">
+    <slot />
+  </div>
+
+  <MenuButton client:load currentPage={title} />
+</header>
