@@ -40,7 +40,7 @@ const GetAll = () => {
   return (
     <>
       {data.length > 0 ? (
-        <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 place-items-center">
           {data?.map((item) => (
             <CostCard
               data={item}

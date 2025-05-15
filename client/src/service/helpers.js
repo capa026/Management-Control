@@ -1,3 +1,5 @@
+import lodash from "lodash";
+
 export const groupIngredients = (ingredients) => {
   // 1. Get the keys of the object
   const keys = Object.keys(ingredients);
@@ -46,3 +48,14 @@ Object.keys(ingredients)
         )
         .filter((object) => object !== false)
 */
+
+export const mergeArrayOfIngredients = (columnsArray, ingredientsArray) => {
+  const lengthDiff = columnsArray.length < ingredientsArray.length;
+  const dataDiff = lodash.take(ingredientsArray, columnsArray.length);
+
+  if (columnsArray.length <= 0) return columnsArray;
+  if (lengthDiff) {
+    return dataDiff;
+  }
+  return ingredientsArray;
+};

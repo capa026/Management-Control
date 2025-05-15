@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import Button from "../../UI/Button";
-import { groupIngredients } from "../../../../service/helpers";
+import {
+  groupIngredients,
+  mergeArrayOfIngredients,
+} from "../../../../service/helpers";
 import { useQueryClient } from "@tanstack/react-query";
 import { AlertTriangle, FilePenLine, Minus, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
@@ -53,7 +56,10 @@ const EditForm = ({ data, setShowModal }) => {
       name: product_name,
       description: product_description,
       // Helper function to group each ingredient field by name and turn it into an orderder object array
-      items: currentItems,
+      items: mergeArrayOfIngredients(
+        currentItems,
+        groupIngredients(ingredients)
+      ),
       id,
     });
 
@@ -123,52 +129,57 @@ const EditForm = ({ data, setShowModal }) => {
         )}
       </div>
 
-      <div className="relative !border-t-2 [&_>*]:not-last:border-b">
-        <div className="grid grid-cols-3 !border-b-0 [&_>*]:py-2 [&_>*]:not-last:border-r [&_>*]:border-gray-800 [&_>*]:bg-gray-900 text-teal-400 text-center text-sm font-bold w-full">
-          <h1>Ingrediente</h1>
-          <h1>Cantidad</h1>
-          <h1>Precio</h1>
-        </div>
-        {currentItems.map((e, i) => (
-          <div
-            className="grid grid-cols-3 [&_input]:not-last:border-r [&_input:hover]:bg-gray-800 [&_input]:text-center border-gray-800"
-            key={i}
-          >
-            <input
-              type="text"
-              {...register(`ingredient${i + 1}`, { required: true })}
-              placeholder="nombre"
-              defaultValue={e.name}
-            />
-            <input
-              type="text"
-              name="quantity"
-              {...register(`ingredient${i + 1}_quantity`, { required: true })}
-              placeholder="0"
-              onChange={handleChangeInput}
-              defaultValue={e.quantity}
-            />
-            <input
-              type="text"
-              name="price"
-              {...register(`ingredient${i + 1}_price`, { required: true })}
-              placeholder="0"
-              onChange={handleChangeInput}
-              defaultValue={e.price}
-              className="!border-r-0"
-            />
-            <div className="absolute -bottom-4 left-0 w-max text-xs text-red-800">
-              {(errors[`ingredient${i + 1}`] ||
-                errors[`ingredient${i + 1}_quantity`] ||
-                errors[`ingredient${i + 1}_price`]) && (
-                <span className="flex items-center gap-1">
-                  <AlertTriangle size={12} /> No pueden haber campos vacios
-                </span>
-              )}
-            </div>
+      {currentItems.length > 0 ? (
+        <div className="!border-t-2 [&_>*]:not-last:border-b">
+          <div className="grid grid-cols-3 !border-b-0 [&_>*]:py-2 [&_>*]:not-last:border-r [&_>*]:border-gray-800 [&_>*]:bg-gray-900 text-teal-400 text-center text-sm font-bold w-full">
+            <h1>Ingrediente</h1>
+            <h1>Cantidad</h1>
+            <h1>Precio</h1>
           </div>
-        ))}
-      </div>
+          {currentItems.map((e, i) => (
+            <div
+              className="grid grid-cols-3 [&_input]:not-last:border-r [&_input:hover]:bg-gray-800 [&_input]:text-center border-gray-800"
+              key={i}
+            >
+              <input
+                type="text"
+                {...register(`ingredient${i + 1}`, { required: true })}
+                placeholder="nombre"
+                defaultValue={e.name}
+              />
+              <input
+                type="text"
+                name="quantity"
+                {...register(`ingredient${i + 1}_quantity`, { required: true })}
+                placeholder="0"
+                onChange={handleChangeInput}
+                defaultValue={e.quantity}
+              />
+              <input
+                type="text"
+                name="price"
+                {...register(`ingredient${i + 1}_price`, { required: true })}
+                placeholder="0"
+                onChange={handleChangeInput}
+                defaultValue={e.price}
+                className="!border-r-0"
+              />
+              <div className="absolute -bottom-4 left-0 w-max text-xs text-red-800">
+                {(errors[`ingredient${i + 1}`] ||
+                  errors[`ingredient${i + 1}_quantity`] ||
+                  errors[`ingredient${i + 1}_price`]) && (
+                  <span className="flex items-center gap-1">
+                    <AlertTriangle size={12} /> No pueden haber campos vacios
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <h1 className="!border-0 py-4 text-gray-500">No hay ingredientes...</h1>
+      )}
+
       <div className="flex justify-center mt-4 mx-auto w-[90%] !border-0 gap-4">
         <Button
           title="Modificar"
