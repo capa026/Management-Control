@@ -50,12 +50,28 @@ Object.keys(ingredients)
 */
 
 export const mergeArrayOfIngredients = (columnsArray, ingredientsArray) => {
+  // Verify the difference between two array of objects
+  // The lodash library have very usefull methods for this
+
   const lengthDiff = columnsArray.length < ingredientsArray.length;
   const dataDiff = lodash.take(ingredientsArray, columnsArray.length);
 
+  // If the array that tracks the edited columns have no columns
+  // Return The original array, meaning the user deleted all of them
   if (columnsArray.length <= 0) return columnsArray;
+
+  // If there is a length difference, we need to figure out that difference
+  // The dataDiff variable return that difference
+  // The lodash _.take method, return N elements from the position 0 of the array
+  // The length of the columnsArray is used here because we already know that ther is a length diff
+  // So we take advantage of that to "take" that amount of element
+  // The objective here is to "merge" the arrays in one, so we can return both, edited columns in case there were some
+  // And deleted columns
   if (lengthDiff) {
     return dataDiff;
   }
+
+  // If none of the above conditions were met, return the ingredientsArray
+  // This means, there were data updated, but no column deletion
   return ingredientsArray;
 };
