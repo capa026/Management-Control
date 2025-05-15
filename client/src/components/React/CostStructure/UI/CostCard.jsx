@@ -9,8 +9,8 @@ const CostCard = ({ data, setSelectedElement, setShowModal }) => {
 
   return (
     <div
-      className="flex flex-col border border-gray-700 rounded-xl w-64 h-80 bg-gray-800 shadow-md
-  hover:bg-gray-700/80 transition-colors duration-200 cursor-pointer"
+      className="flex flex-col border border-gray-700 rounded-xl w-64 h-80 bg-radial from-gray-800 to-gray-900 shadow-md
+  hover:from-gray-800/50 hover:to-gray-900/50 transition-colors duration-200 cursor-pointer"
       onClick={() => {
         setSelectedElement(data);
         setShowModal(true);

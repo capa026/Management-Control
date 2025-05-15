@@ -138,7 +138,7 @@ const EditForm = ({ data, setShowModal }) => {
           </div>
           {currentItems.map((e, i) => (
             <div
-              className="grid grid-cols-3 [&_input]:not-last:border-r [&_input:hover]:bg-gray-800 [&_input]:text-center border-gray-800"
+              className="relative grid grid-cols-3 [&_input]:not-last:border-r [&_input:hover]:bg-gray-800 [&_input]:text-center border-gray-800"
               key={i}
             >
               <input
