@@ -6,11 +6,12 @@ import {
 } from "../../../../service/helpers";
 import { useQueryClient } from "@tanstack/react-query";
 import { AlertTriangle, FilePenLine, Minus, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import lodash from "lodash";
 import AcceptPrompt from "../../UI/AcceptPrompt";
 import InputError from "../../UI/InputError";
 import { deleteById, updateStructure } from "../../../../API/costStructure";
+import { useUpdateCostStructureStore } from "../../../../Store/Store";
 
 /*
   There is an unexpected behavior when deleting and adding a column in the ingredients table
@@ -21,6 +22,13 @@ import { deleteById, updateStructure } from "../../../../API/costStructure";
 */
 
 const EditForm = ({ data, setShowModal }) => {
+  const updateStructure = useUpdateCostStructureStore(
+    (state) => state.updateStructure
+  );
+  const loading = useUpdateCostStructureStore((state) => state.loading);
+  const error = useUpdateCostStructureStore((state) => state.error);
+  const { status, resetStatus } = useUpdateCostStructureStore((state) => state);
+
   // Get the variable from the fetched data
   const { name, description, items, id } = data;
 
@@ -52,7 +60,18 @@ const EditForm = ({ data, setShowModal }) => {
     // Prevent Editing if the data is the same
     if (same) return;
 
-    const response = await updateStructure({
+    // const response = await updateStructure({
+    //   name: product_name,
+    //   description: product_description,
+    //   // Helper function to group each ingredient field by name and turn it into an orderder object array
+    //   items: mergeArrayOfIngredients(
+    //     currentItems,
+    //     groupIngredients(ingredients)
+    //   ),
+    //   id,
+    // });
+
+    await updateStructure({
       name: product_name,
       description: product_description,
       // Helper function to group each ingredient field by name and turn it into an orderder object array
@@ -62,13 +81,22 @@ const EditForm = ({ data, setShowModal }) => {
       ),
       id,
     });
-
-    // Mark the cost_structures query as stale (outdated) to refetch them
-    // And make the new cost structure be fetched inmediatly after being created
-    await queryClient.invalidateQueries({ queryKey: ["cost_structures"] });
-
-    if (response.status === 200) setShowModal(false);
   };
+
+  useEffect(() => {
+    if (!status) return;
+    const updateEditControlls = async () => {
+      if (status === 200) {
+        await setShowModal(false);
+        // Mark the cost_structures query as stale (outdated) to refetch them
+        // And make the new cost structure be fetched inmediatly after being created
+        await queryClient.invalidateQueries({ queryKey: ["cost_structures"] });
+      }
+    };
+
+    updateEditControlls();
+    resetStatus();
+  }, [status]);
 
   const handleChangeInput = (e) => {
     let { name, value } = e.target;
@@ -186,6 +214,7 @@ const EditForm = ({ data, setShowModal }) => {
           className="w-2/3"
           submit
           icon={<FilePenLine />}
+          disabled={loading}
         />
         <Button
           title=""
