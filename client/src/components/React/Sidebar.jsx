@@ -1,5 +1,6 @@
 import { Icon } from "@iconify-icon/react";
 import AnimateShow from "./UI/AnimateShow";
+import { useEffect } from "react";
 
 const Sidebar = ({ currentPage, openSidebar }) => {
   return (
@@ -84,3 +85,104 @@ const Sidebar = ({ currentPage, openSidebar }) => {
 };
 
 export default Sidebar;
+
+/*
+MEMOIZED COMPONENT
+
+import { memo, useEffect } from "react";
+import { Icon } from "@iconify-icon/react";
+import AnimateShow from "./UI/AnimateShow";
+
+const MenuItem = memo(({ href, currentPage, pageName, icon, children }) => (
+  <a
+    href={href}
+    className={`flex px-3 py-2 text-sm items-center gap-2 font-normal transition-colors duration-200
+      hover:text-teal-400 hover:bg-gray-800
+      ${
+        currentPage === pageName
+          ? "bg-gray-950 text-teal-400 hover:!bg-gray-950"
+          : ""
+      }`}
+    aria-current={currentPage === pageName ? "page" : undefined}
+  >
+    <Icon icon={icon} />
+    {children}
+  </a>
+));
+
+const Sidebar = ({ currentPage, openSidebar }) => {
+  useEffect(() => console.log("Render"));
+  return (
+    <AnimateShow
+      condition={openSidebar}
+      initial={{ width: 0 }}
+      animate={{
+        width: "max-content",
+        transition: "ease-in-out",
+      }}
+      exit={{ width: 0 }}
+      className="fixed top-0 !bottom-0 overflow-hidden z-[100]"
+    >
+      <aside
+        className="flex md:hidden w-max bg-gray-900/80 backdrop-blur-sm border-r border-gray-800 pb-1 flex-col shadow-lg shadow-black h-full"
+        aria-label="Main navigation"
+      >
+        <h2 className="flex items-center gap-1 text-lg font-bold mb-1 px-3 text-teal-400 text-center border-gray-800 w-full border-b h-12 max-h-12">
+          <Icon icon="fluent-color:data-area-20" />
+          <i> Management </i>
+        </h2>
+
+        <nav className="space-y-1">
+          <MenuItem
+            href="/"
+            currentPage={currentPage}
+            pageName="Dashboard"
+            icon="line-md:home"
+          >
+            Dashboard
+          </MenuItem>
+          <MenuItem
+            href="/EstructuraDeCostos"
+            currentPage={currentPage}
+            pageName="Estructura de costos"
+            icon="line-md:clipboard-list"
+          >
+            Estructura de costos
+          </MenuItem>
+          <MenuItem
+            href="/Ventas"
+            currentPage={currentPage}
+            pageName="Ventas"
+            icon="line-md:briefcase"
+          >
+            Ventas
+          </MenuItem>
+          <MenuItem
+            href="/Facturas"
+            currentPage={currentPage}
+            pageName="Facturas"
+            icon="line-md:document"
+          >
+            Facturas
+          </MenuItem>
+          <MenuItem
+            href="/Inventario"
+            currentPage={currentPage}
+            pageName="Inventario"
+            icon="line-md:check-list-3"
+          >
+            Inventario
+          </MenuItem>
+        </nav>
+
+        <h3 className="mt-auto text-gray-600 text-xs text-center">
+          ®Carlos pacheco 2025
+        </h3>
+      </aside>
+    </AnimateShow>
+  );
+};
+
+export default memo(Sidebar);
+
+*/
