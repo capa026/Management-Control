@@ -1,0 +1,15 @@
+---
+import PageHeader from "../components/PageHeader.astro";
+import CostStructure from "../components/React/CostStructure/CostStructure";
+import Create from "../components/React/CostStructure/UI/Create";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Estructura de costos">
+  <PageHeader title="Estructura de costos" iconName="clipboard">
+    <Create client:load />
+  </PageHeader>
+  <div class="p-6">
+    <CostStructure client:load />
+  </div>
+</Layout>
