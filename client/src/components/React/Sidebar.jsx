@@ -1,6 +1,5 @@
 import { Icon } from "@iconify-icon/react";
 import AnimateShow from "./UI/AnimateShow";
-import { useEffect } from "react";
 
 const Sidebar = ({ currentPage, openSidebar }) => {
   return (
