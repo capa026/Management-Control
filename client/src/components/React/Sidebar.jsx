@@ -8,10 +8,10 @@ const Sidebar = ({ currentPage, openSidebar }) => {
       initial={{ width: 0 }}
       animate={{
         width: "max-content",
-        transition: "linear",
+        transition: "ease",
       }}
       exit={{ width: 0 }}
-      className={"flex fixed top-0 !bottom-0 overflow-hidden z-[100]"}
+      className={"fixed top-0 !bottom-0 overflow-hidden z-[100]"}
     >
       <aside className="flex md:hidden w-max bg-gray-900/80 backdrop-blur-sm border-r border-gray-800 pb-1 flex-col shadow-lg shadow-black h-full overflow-y-auto">
         <h2 className="flex items-center gap-1 text-lg font-bold mb-1 px-3 text-teal-400 text-center border-gray-800 w-full border-b h-12 max-h-12">
