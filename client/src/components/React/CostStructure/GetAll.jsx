@@ -11,6 +11,7 @@ import { getAll } from "../../../API/costStructure";
 const GetAll = () => {
   const [selectedElement, setSelectedElement] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
   // Prevent hydration mismatch by delaying render until client-side hydration
   const [isClient, setIsClient] = useState(false);
 
@@ -20,6 +21,8 @@ const GetAll = () => {
     staleTime: 5 * 60 * 1000, // 5 minutes: Data is considered "fresh" for this period
   });
 
+  // When the component is rendered, set isClient to true
+  // To be sure the component is matched with the client-side version
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -31,7 +34,7 @@ const GetAll = () => {
 
   if (!isClient) {
     // Render nothing on the server to avoid mismatch
-    return null;
+    return <Loader />;
   }
 
   if (isLoading) return <Loader />;
@@ -56,7 +59,6 @@ const GetAll = () => {
           No hay datos para mostrar...
         </h1>
       )}
-
       <Modal
         showModal={showModal}
         setShowModal={setShowModal}
