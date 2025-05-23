@@ -1,10 +1,18 @@
 ---
 import PageHeader from "../components/PageHeader.astro";
+import SSRInvoices from "../components/SSRInvoices.astro";
+import Loader from "../components/React/UI/Loader";
 import Layout from "../layouts/Layout.astro";
 export const prerender = true;
 ---
 
 <Layout title="Facturas">
   <PageHeader title="Facturas" iconName="document" />
-  <div class="p-6">a</div>
+  <div class="p-6">
+    <SSRInvoices server:defer>
+      <div slot="fallback">
+        <Loader />
+      </div>
+    </SSRInvoices>
+  </div>
 </Layout>
