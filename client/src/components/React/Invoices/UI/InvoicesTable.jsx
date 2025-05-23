@@ -36,15 +36,11 @@ const InvoicesTable = ({ data }) => {
         </thead>
         <tbody className="divide-y divide-gray-800 [&_>*]:cursor-pointer [&_>*:hover]:bg-gray-800 [&_>*:active]:bg-gray-800">
           {data.map((invoice) => (
-            <tr
-              key={invoice.id}
-              className="[&_td]:py-4 text-gray-400"
-              onClick={() => console.log(invoice)}
-            >
+            <tr key={invoice.id} className="[&_td]:py-4 text-gray-400">
               <td className="font-bold !text-white">#-{invoice.id}</td>
+              <td>{invoice.client || "-"}</td>
               <td>{invoice.total_price.toFixed(2)} $</td>
               <td>{invoice.date}</td>
-              <td>{invoice.client || "-"}</td>
               <td>
                 <span
                   className={`rounded-lg px-2 py-1 ${
