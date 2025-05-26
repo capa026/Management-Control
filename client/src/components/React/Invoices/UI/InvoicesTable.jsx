@@ -9,13 +9,13 @@ const ThWithIcon = ({ icon, title, onClick }) => {
   return (
     <th>
       <div className="flex justify-center items-center gap-1">
-        {title}
         <div
           onClick={onClick}
           className="text-white cursor-pointer hover:text-gray-400 active:text-gray-400 flex"
         >
           <Icon icon={icon} width={20} />
         </div>
+        {title}
       </div>
     </th>
   );
@@ -31,7 +31,7 @@ const InvoicesTable = ({ data }) => {
             <th>CLIENTE</th>
             <ThWithIcon title="MONTO" icon="mynaui:filter" />
             <ThWithIcon title="FECHA" icon="mynaui:calendar" />
-            <th>ESTADO</th>
+            <ThWithIcon title="ESTADO" icon="mynaui:filter" />
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-800 [&_>*]:cursor-pointer [&_>*:hover]:bg-gray-800 [&_>*:active]:bg-gray-800">
